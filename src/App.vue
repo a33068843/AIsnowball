@@ -1,9 +1,22 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+    <router-link to="/login">About</router-link>
+    <router-link to="/success">
+      <button>Yes</button>
+    </router-link>
+    <div style="display: flex; flex-wrap: wrap">
+      <router-link to="/mission">Mission</router-link>
+      <router-link to="/mission1">Mission1</router-link>
+      <router-link to="/mission2">Mission2</router-link>
+      <router-link to="/questions">Questions</router-link>
+      <router-link to="/correct">Correct</router-link>
+      <router-link to="/wrong">Wrong</router-link>
+      <router-link to="/pass">Pass</router-link>
+      <router-link to="/exchange">Exchange</router-link>
+    </div>
+  </div> -->
+  <router-view />
 </template>
 
 <style lang="scss">
