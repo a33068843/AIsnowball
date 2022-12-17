@@ -22,5 +22,11 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+# Environment
+.env
+
+# Secret Key
+client_secret.json
+
 .yarn
 .firebase

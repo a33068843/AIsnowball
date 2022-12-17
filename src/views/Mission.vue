@@ -23,54 +23,54 @@ section
         .box
           .textWrapper.small
             h6.text 任務一
-          .textWrapper.checkBoxWrapper(@click='goQuestion')
+          .textWrapper.checkBoxWrapper(@click='toVideo')
             .checkBox
-              .checked(v-show='isQuestionDone')
-            h4.text 金融知識大考驗
+              .checked(v-show='isVideoDone')
+            h4.text 精彩影片觀看
           .textWrapper.small
             h6.text 任務二
-          .textWrapper.checkBoxWrapper(@click='goForm')
+          .textWrapper.checkBoxWrapper(@click='toSurvey')
             .checkBox
-              .checked(v-show='isFormDone')
+              .checked(v-show='isSurveyDone')
             h4.text 活動滿意度填寫
       .buttonWrapper
-        button(v-show='!isFormDone || !isQuestionDone') 尚未完成
-        button(v-show='isFormDone && isQuestionDone' @click='goTicket') 兌換精緻餐點
+        button(v-show='!isSurveyDone || !isVideoDone') 尚未完成
+        button(v-show='isSurveyDone && isVideoDone' @click='toCoupon') 兌換精緻餐點
 </template>
 
 <script>
 export default {
   name: 'Success',
-  components: {
-  },
+  components: {},
   data() {
     return {
-      isQuestionDone: false,
-      isFormDone: false,
-    }
+      isVideoDone: false,
+      isSurveyDone: false,
+    };
   },
   mounted() {
-    this.$data.isQuestionDone = this.$store.state.questionDone;
-    this.$data.isFormDone = this.$store.state.formDone;
+    this.$data.isVideoDone = !!this.$store.state.video;
+    this.$data.isSurveyDone = !!this.$store.state.survey;
   },
   methods: {
-    goQuestion() {
-      const isQuestionDone = this.$data.isQuestionDone;
-      if (!isQuestionDone) {
-        this.$router.push('mission1');
+    toVideo() {
+      // TODO: 看過影片後能否點回去再次瀏覽
+      const isVideoDone = this.$data.isVideoDone;
+      if (!isVideoDone) {
+        this.$router.push('video');
       }
     },
-    goForm() {
-      const isFormDone = this.$data.isFormDone;
-      if (!isFormDone) {
+    toSurvey() {
+      const isSurveyDone = this.$data.isSurveyDone;
+      if (!isSurveyDone) {
         this.$router.push('mission2');
       }
     },
-    goTicket() {
+    toCoupon() {
       this.$router.push('exchange');
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -79,7 +79,12 @@ export default {
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, rgba(125,201,232,1) 0%, rgba(255,255,255,1) 90%, rgba(125,201,232,1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(125, 201, 232, 1) 0%,
+    rgba(255, 255, 255, 1) 90%,
+    rgba(125, 201, 232, 1) 100%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,9 +109,9 @@ export default {
     top: 8%;
     left: 10%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow2 {
@@ -116,9 +121,9 @@ export default {
     top: 4%;
     left: 85%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow3 {
@@ -128,9 +133,9 @@ export default {
     top: 72%;
     left: 4%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow4 {
@@ -140,9 +145,9 @@ export default {
     top: 70%;
     left: 88%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow5 {
@@ -152,9 +157,9 @@ export default {
     top: 90%;
     left: 2%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow6 {
@@ -234,7 +239,7 @@ export default {
       .box {
         margin: 0 auto;
         max-width: fit-content;
-        background-color: #7DC8E7;
+        background-color: #7dc8e7;
         border-radius: 10px;
         padding: 10px 20px;
         display: flex;
@@ -260,6 +265,7 @@ export default {
       .checkBoxWrapper {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         .checkBox {
           border: 2px solid $primary;
@@ -269,7 +275,8 @@ export default {
           margin-right: 6px;
           position: relative;
           .checked {
-            background: url(~@/assets/mission-checked.png) no-repeat center / contain;
+            background: url(~@/assets/mission-checked.png) no-repeat center /
+              contain;
             width: 20px;
             height: 20px;
             position: relative;

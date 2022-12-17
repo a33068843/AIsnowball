@@ -26,9 +26,9 @@ export default {
   methods: {
     handleButton() {
       this.$router.push('/mission');
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -37,7 +37,12 @@ export default {
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, rgba(168,217,241,1) 0%, rgba(255,255,255,1) 80%, rgba(125,201,232,1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(168, 217, 241, 1) 0%,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(125, 201, 232, 1) 100%
+  );
   .logo {
     position: relative;
     background: url(~@/assets/logo-2x.png) no-repeat center / contain;
@@ -59,9 +64,9 @@ export default {
     top: 8%;
     left: 10%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow2 {
@@ -71,9 +76,9 @@ export default {
     top: 4%;
     left: 85%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow3 {
@@ -83,9 +88,9 @@ export default {
     top: 72%;
     left: 4%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow4 {
@@ -95,9 +100,9 @@ export default {
     top: 70%;
     left: 88%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow5 {
@@ -107,9 +112,9 @@ export default {
     top: 90%;
     left: 2%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow6 {
@@ -158,7 +163,8 @@ export default {
 
       .cookie1 {
         position: absolute;
-        background: url(~@/assets/success-cookie1.png) no-repeat center / contain;
+        background: url(~@/assets/success-cookie1.png) no-repeat center /
+          contain;
         width: #{math.div(465, 1080) * 100%};
         top: 0%;
         left: 5%;
@@ -170,7 +176,8 @@ export default {
       }
       .cookie2 {
         position: absolute;
-        background: url(~@/assets/success-cookie2.png) no-repeat center / contain;
+        background: url(~@/assets/success-cookie2.png) no-repeat center /
+          contain;
         width: #{math.div(481, 1080) * 100%};
         top: -5%;
         right: 5%;
@@ -208,6 +215,7 @@ export default {
       font-weight: 500;
       letter-spacing: 4px;
       color: white;
+      cursor: pointer;
     }
   }
 }

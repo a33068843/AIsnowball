@@ -9,47 +9,57 @@ section
     .snow4
     .snow5
     .snow6
-    form(v-on:submit.prevent="onSubmit")
+    .form
       label.name
         input(type='text' v-model="name")
       label.num
-        input(type='number' v-model="number")
+        input(type='number' v-model="member")
       label
-        button 報到
+        button(v-if='!isLoading' @click="onSubmit") 報到
+        button.isLoading(v-else='isLoading') 進入奇園中...
+        h5.error(v-if='!isFirst && (!name || !member)') 請填寫姓名及人數~
         h5.error(v-if='!isUser') 無此使用者
 </template>
 
 <script>
-import { checkUser } from '@/firebase';
 export default {
   name: 'Login',
   data() {
     return {
       name: '',
-      number: '',
+      member: '',
+      isFirst: true,
       isUser: true,
+      isLoading: false,
     };
   },
   methods: {
-    onSubmit() {
-      const user = this.$data.name;
-      this.$router.push('/success');
-      checkUser(user).then((req) => {
-        if (req) {
-          this.$data.isUser = true;
-          const question = req[user].questionDone ? 8 : 1;
-          const userPayload = {
-            name: req[user].name,
-            questionDone: req[user].questionDone,
-            formDone: req[user].formDone,
-            question: question,
-          };
-          this.$store.commit('loadUser', userPayload);
-          this.$router.push('/success');
-        } else {
-          this.$data.isUser = false;
+    async onSubmit() {
+      if (this.isLoading) {
+        return;
+      }
+
+      this.$data.isUser = true;
+      this.$data.isFirst = false;
+      const name = this.$data.name;
+      const member = this.$data.member.toString();
+      if (!name || !member) return;
+
+      this.$data.isLoading = true;
+
+      setTimeout(async () => {
+        const hasUser = await this.$store.dispatch('GetUser', { name, member });
+
+        if (!hasUser) {
+          this.isUser = false;
+          this.isLoading = false;
+          this.isFirst = true;
+          return;
         }
-      });
+
+        this.$data.isLoading = false;
+        this.$router.push('/success');
+      }, 0);
     },
   },
 };
@@ -168,7 +178,7 @@ export default {
       padding-bottom: #{math.div(1197, 2160) * 100%};
     }
   }
-  form {
+  .form {
     width: 100%;
     position: relative;
     display: flex;
@@ -206,6 +216,12 @@ export default {
       letter-spacing: 4px;
       color: white;
       margin-bottom: 10px;
+      cursor: pointer;
+
+      &.isLoading {
+        background-color: $primaryOpacity;
+        cursor: default;
+      }
     }
     h5 {
       font-size: 12px;

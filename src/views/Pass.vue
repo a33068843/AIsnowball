@@ -22,8 +22,8 @@ export default {
     goHome() {
       this.$router.push('mission');
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
@@ -134,7 +134,10 @@ section {
       left: -1px;
     }
   }
-  h2,h3,h4,h5 {
+  h2,
+  h3,
+  h4,
+  h5 {
     color: $primary;
   }
   h2 {

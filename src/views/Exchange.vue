@@ -17,26 +17,48 @@ section
             h5.text 請將此畫面出示給工作人員
       .exchangeWrapper
         .box
-          button 兌換餐券
+          button(v-if="!isLoading && hasCoupon" @click="exchange") 兌換餐券
+          button.isLoading(v-if="isLoading") 兌換中...
+          button.isLoading(v-if="!hasCoupon") 兌換成功!
       .mountain
 </template>
 
 <script>
 export default {
   name: 'Success',
-  components: {
-  },
+  components: {},
   data() {
     return {
-      isQuestionDone: false,
-      isFormDone: false,
-    }
+      id: '',
+      isLoading: false,
+      isVideoComplete: false,
+      isSurveyComplete: false,
+      hasCoupon: true,
+    };
   },
   mounted() {
+    this.id = this.$store.state.id;
+    this.isSurveyComplete = !!this.$store.state.survey;
+    this.isWatchedVideo = !!this.$store.state.video;
+    this.hasCoupon = !this.$store.state.coupon;
+    if (!this.$store.state.survey || !this.$store.state.video) {
+      this.$router.push('mission');
+    }
   },
   methods: {
-  }
-}
+    async exchange() {
+      if (this.isLoading) {
+        return;
+      }
+      this.isLoading = true;
+      setTimeout(async () => {
+        await this.$store.dispatch('exchange', this.$data.id);
+        this.isLoading = false;
+        this.hasCoupon = false;
+      }, 0);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -45,7 +67,12 @@ export default {
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, rgba(125,201,232,1) 0%, rgba(255,255,255,1) 90%, rgba(125,201,232,1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(125, 201, 232, 1) 0%,
+    rgba(255, 255, 255, 1) 90%,
+    rgba(125, 201, 232, 1) 100%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,9 +97,9 @@ export default {
     top: 8%;
     left: 10%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow2 {
@@ -82,9 +109,9 @@ export default {
     top: 4%;
     left: 85%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow3 {
@@ -94,9 +121,9 @@ export default {
     top: 72%;
     left: 4%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow4 {
@@ -106,9 +133,9 @@ export default {
     top: 70%;
     left: 88%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow5 {
@@ -118,9 +145,9 @@ export default {
     top: 90%;
     left: 2%;
     &:before {
-    content: '';
-    display: block;
-    padding-bottom: #{1 * 100%};
+      content: '';
+      display: block;
+      padding-bottom: #{1 * 100%};
     }
   }
   .snow6 {
@@ -236,7 +263,8 @@ export default {
           margin-right: 6px;
           position: relative;
           .checked {
-            background: url(~@/assets/mission-checked.png) no-repeat center / contain;
+            background: url(~@/assets/mission-checked.png) no-repeat center /
+              contain;
             width: 20px;
             height: 20px;
             position: relative;
@@ -279,6 +307,9 @@ export default {
       font-weight: 500;
       letter-spacing: 4px;
       color: white;
+      &.isLoading {
+        background-color: $primaryOpacity;
+      }
     }
     .mountain {
       position: relative;
