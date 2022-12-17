@@ -90,6 +90,9 @@ export default {
     };
   },
   mounted() {
+    if (!this.$store.state.user) {
+      this.$router.push('/');
+    }
     this.isSurveyComplete = !!this.$store.state.survey;
     if (this.$store.state.survey) {
       this.$router.push('mission');

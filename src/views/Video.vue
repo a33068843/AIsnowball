@@ -37,6 +37,9 @@ export default {
     };
   },
   mounted() {
+    if (!this.$store.state.user) {
+      this.$router.push('/');
+    }
     this.isWatchedVideo = this.$store.state.video;
     this.id = this.$store.state.id;
     if (this.$store.state.video) {

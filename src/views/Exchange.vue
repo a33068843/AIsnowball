@@ -37,6 +37,9 @@ export default {
     };
   },
   mounted() {
+    if (!this.$store.state.user) {
+      this.$router.push('/');
+    }
     this.id = this.$store.state.id;
     this.isSurveyComplete = !!this.$store.state.survey;
     this.isWatchedVideo = !!this.$store.state.video;

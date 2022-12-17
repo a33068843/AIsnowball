@@ -23,6 +23,11 @@ section
 <script>
 export default {
   name: 'Success',
+  mounted() {
+    if (!this.$store.state.user) {
+      this.$router.push('/');
+    }
+  },
   methods: {
     handleButton() {
       this.$router.push('/mission');

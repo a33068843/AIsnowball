@@ -49,6 +49,9 @@ export default {
     };
   },
   mounted() {
+    if (!this.$store.state.user) {
+      this.$router.push('/');
+    }
     this.$data.isVideoDone = !!this.$store.state.video;
     this.$data.isSurveyDone = !!this.$store.state.survey;
   },

@@ -18,6 +18,11 @@ section
 <script>
 export default {
   name: 'Pass',
+  mounted() {
+    if (!this.$store.state.user) {
+      this.$router.push('/');
+    }
+  },
   methods: {
     goHome() {
       this.$router.push('mission');
