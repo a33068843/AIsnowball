@@ -13,27 +13,40 @@ section
         .box(@click.passive.prevent='checkVideo')
           .personWrapper
             img.person(src="@/assets/mission-person.png")
-          iframe(src="https://www.youtube.com/embed/R41Hbnwk0Oo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen @load="checkVideo")
+          YoutubeVue3(
+            ref="youtube"
+            :autoplay="1"
+            :videoid="videoId"
+            :loop="1"
+            :controls="1"
+            width="default"
+            @ended="onEnded"
+          )
       .mountain
       .personsBg
-        .buttonWrapper
-          button(@click="complete" v-if="isWatchedVideo && !isLoading") 完成
-          button.isLoading(v-else-if="isWatchedVideo && isLoading") 送出中...
-          button.disable(v-else) 未完成
+        //- .buttonWrapper
+        //-   button(@click="complete" v-if="isWatchedVideo && !isLoading") 完成
+        //-   button.isLoading(v-else-if="isWatchedVideo && isLoading") 送出中...
+        //-   button.disable(v-else) 未完成
       .persons
         .cookie
         .person
 </template>
 
 <script>
+import { YoutubeVue3 } from 'youtube-vue3';
+
 export default {
   name: 'Video',
-  components: {},
+  components: {
+    YoutubeVue3,
+  },
   data() {
     return {
       id: '',
       isLoading: false,
       isWatchedVideo: false,
+      videoId: 'R41Hbnwk0Oo',
     };
   },
   mounted() {
@@ -51,6 +64,17 @@ export default {
       this.$data.isWatchedVideo = true;
     },
     complete() {
+      if (this.isLoading) {
+        return;
+      }
+      this.isLoading = true;
+      setTimeout(async () => {
+        await this.$store.dispatch('videoComplete', this.$data.id);
+        this.isLoading = true;
+        this.$router.push('/pass');
+      }, 0);
+    },
+    onEnded() {
       if (this.isLoading) {
         return;
       }
@@ -244,7 +268,7 @@ export default {
     .personsBg {
       position: absolute;
       width: 100%;
-      height: 80px;
+      height: 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
