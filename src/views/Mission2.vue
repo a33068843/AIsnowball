@@ -22,36 +22,36 @@ section
         .inline
           input(type="radio" id="q1-5" name="question_1" value="非常不滿意" v-model="question_1")
           label.text.h5(for="q1-5") 5.非常不滿意
-      .textBox
-        h5.text Q2.
-        h5.text 您對認為在家庭理財規劃中，您最需要什麼樣的諮詢及服務？
-      .radioBox
-        .inline
-          input(type="radio" id="q2-1" name="question_2" value="退休理財規劃" v-model="question_2")
-          label.text.h5(for="q2-1") 1.退休理財規劃
-        .inline
-          input(type="radio" id="q2-2" name="question_2" value="醫療保障規劃" v-model="question_2")
-          label.text.h5(for="q2-2") 2.醫療保障規劃
-        .inline
-          input(type="radio" id="q2-3" name="question_2" value="財富傳承規劃" v-model="question_2")
-          label.text.h5(for="q2-3") 3.財富傳承規劃
-        .inline
-          input(type="radio" id="q2-4" name="question_2" value="子女教育金規劃" v-model="question_2")
-          label.text.h5(for="q2-4") 4.子女教育金規劃
-        .inline
-          input(type="radio" id="q2-5" name="question_2" value="夢想金規劃" v-model="question_2")
-          label.text.h5(for="q2-5") 5.夢想金規劃
-        .inline
-          input(type="radio" id="q2-6" name="question_2" value="家庭責任規劃" v-model="question_2")
-          label.text.h5(for="q2-6") 6.家庭責任規劃
-        .inline
-          input(type="radio" id="q2-7" name="question_2" value="家庭財富治理" v-model="question_2")
-          label.text.h5(for="q2-7") 7.家庭財富治理
-        .inline
-          input(type="radio" id="q2-8" name="question_2" value="其他" v-model="question_2")
-          label.text.h5(for="q2-8") 8.其他，請填寫
-        .inline
-          input(type="text" v-model="question_2_other")
+      //- .textBox
+      //-   h5.text Q2.
+      //-   h5.text 您對認為在家庭理財規劃中，您最需要什麼樣的諮詢及服務？
+      //- .radioBox
+      //-   .inline
+      //-     input(type="radio" id="q2-1" name="question_2" value="退休理財規劃" v-model="question_2")
+      //-     label.text.h5(for="q2-1") 1.退休理財規劃
+      //-   .inline
+      //-     input(type="radio" id="q2-2" name="question_2" value="醫療保障規劃" v-model="question_2")
+      //-     label.text.h5(for="q2-2") 2.醫療保障規劃
+      //-   .inline
+      //-     input(type="radio" id="q2-3" name="question_2" value="財富傳承規劃" v-model="question_2")
+      //-     label.text.h5(for="q2-3") 3.財富傳承規劃
+      //-   .inline
+      //-     input(type="radio" id="q2-4" name="question_2" value="子女教育金規劃" v-model="question_2")
+      //-     label.text.h5(for="q2-4") 4.子女教育金規劃
+      //-   .inline
+      //-     input(type="radio" id="q2-5" name="question_2" value="夢想金規劃" v-model="question_2")
+      //-     label.text.h5(for="q2-5") 5.夢想金規劃
+      //-   .inline
+      //-     input(type="radio" id="q2-6" name="question_2" value="家庭責任規劃" v-model="question_2")
+      //-     label.text.h5(for="q2-6") 6.家庭責任規劃
+      //-   .inline
+      //-     input(type="radio" id="q2-7" name="question_2" value="家庭財富治理" v-model="question_2")
+      //-     label.text.h5(for="q2-7") 7.家庭財富治理
+      //-   .inline
+      //-     input(type="radio" id="q2-8" name="question_2" value="其他" v-model="question_2")
+      //-     label.text.h5(for="q2-8") 8.其他，請填寫
+      //-   .inline
+      //-     input(type="text" v-model="question_2_other")
       .textBox.last
         h5.text.center 如您對本次活動有任何改善建議，請告訴我們，謝謝！
       .radioBox
@@ -65,8 +65,8 @@ section
       button.isLoading(v-else) 送出中...
       .textBox(v-if="show")
         h5.error(v-if="!question_1") * Q1 還尚未填寫
-        h5.error(v-if="!question_2") * Q2 還尚未填寫
-        h5.error(v-if="question_2 == '其他' && !question_2_other") * Q2 還尚未填寫「其他」欄位內容
+        //- h5.error(v-if="!question_2") * Q2 還尚未填寫
+        //- h5.error(v-if="question_2 == '其他' && !question_2_other") * Q2 還尚未填寫「其他」欄位內容
         h5.error(v-if="!accept") 勾選「同意提交」後才能送出噢!
       .textBox.info
         h3.text.final 問卷結束<br>感謝您的寶貴意見！
@@ -106,9 +106,9 @@ export default {
 
       this.$data.show = true;
       if (!this.$data.question_1) return;
-      if (!this.$data.question_2) return;
-      if (this.$data.question_2 == '其他' && !this.$data.question_2_other)
-        return;
+      // if (!this.$data.question_2) return;
+      // if (this.$data.question_2 == '其他' && !this.$data.question_2_other)
+      // return;
       if (!this.$data.accept) return;
 
       this.$data.isLoading = true;

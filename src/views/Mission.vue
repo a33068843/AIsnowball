@@ -17,7 +17,7 @@ section
             h5.text 完成以下任務
         .personWrapper.right
           .textWrapper
-            h5.text 即可領取精緻餐點
+            h5.text 即可領取精緻餐點!!
           img.person(src="@/assets/mission-donout.png")
       .missionWrapper
         .box
@@ -194,7 +194,7 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 60px;
+      padding: 0 40px;
 
       .personWrapper {
         display: flex;
@@ -229,10 +229,10 @@ export default {
       }
       .text {
         color: $primary;
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 600;
         line-height: 1.5rem;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
       }
     }
     .missionWrapper {
@@ -284,8 +284,8 @@ export default {
             height: 20px;
             position: relative;
             filter: brightness(0.7);
-            top: -4px;
-            left: 2px;
+            top: -6px;
+            left: 0px;
           }
         }
       }

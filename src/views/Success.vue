@@ -17,7 +17,7 @@ section
         .cookie2
         .castle
       .buttonWrapper
-        button(@click='handleButton') 進入冰雪奇園
+        button(@click='handleButton') 進入 AI 冰雪奇園
 </template>
 
 <script>
@@ -139,8 +139,8 @@ export default {
     position: relative;
 
     .textContainer {
-      padding: 0 40px;
-      margin-bottom: 50px;
+      padding: 0 30px;
+      margin-bottom: 40px;
 
       .textWrapper {
         width: fit-content;
@@ -151,10 +151,10 @@ export default {
       }
       .text {
         color: $primary;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 400;
-        line-height: 1.5rem;
-        letter-spacing: 2px;
+        line-height: 2rem;
+        letter-spacing: 1.5px;
       }
     }
     .sketch {
@@ -170,9 +170,9 @@ export default {
         position: absolute;
         background: url(~@/assets/success-cookie1.png) no-repeat center /
           contain;
-        width: #{math.div(465, 1080) * 100%};
+        width: #{math.div(400, 1080) * 100%};
         top: 0%;
-        left: 5%;
+        left: 10%;
         &:before {
           content: '';
           display: block;
@@ -183,9 +183,9 @@ export default {
         position: absolute;
         background: url(~@/assets/success-cookie2.png) no-repeat center /
           contain;
-        width: #{math.div(481, 1080) * 100%};
+        width: #{math.div(420, 1080) * 100%};
         top: -5%;
-        right: 5%;
+        right: 10%;
         &:before {
           content: '';
           display: block;

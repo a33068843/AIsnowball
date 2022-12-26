@@ -46,7 +46,7 @@ export default {
       id: '',
       isLoading: false,
       isWatchedVideo: false,
-      videoId: 'R41Hbnwk0Oo',
+      videoId: 'CjEYfICy0oM',
     };
   },
   mounted() {
