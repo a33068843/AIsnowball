@@ -16,7 +16,7 @@ section
         input(type='number' v-model="member")
       label
         button(v-if='!isLoading' @click="onSubmit") 報到
-        button.isLoading(v-else='isLoading') 進入奇園中...
+        button.isLoading(v-else='isLoading') 進入 AI 冰雪奇園中...
         h5.error(v-if='!isFirst && (!name || !member)') 請填寫姓名及人數~
         h5.error(v-if='!isUser') 無此使用者
 </template>

@@ -5,6 +5,9 @@ const routes = [
     path: '/',
     name: 'Login',
     component: () => import('../views/Login.vue'),
+    meta: {
+      title: 'AI 冰雪奇緣',
+    },
   },
   {
     path: '/success',

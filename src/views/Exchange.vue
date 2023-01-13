@@ -17,9 +17,9 @@ section
             h5.text 請將此畫面出示給工作人員
       .exchangeWrapper
         .box
-          button(v-if="!isLoading && hasCoupon" @click="exchange") 兌換餐券
+          button(v-if="!isLoading && hasCoupon" @click="exchange") 兌換餐券 {{number}} 份
           button.isLoading(v-if="isLoading") 兌換中...
-          button.isLoading(v-if="!hasCoupon") 兌換成功!
+          button.isLoading(v-if="!hasCoupon") {{number}} 份兌換成功!
       .mountain
 </template>
 
@@ -30,6 +30,7 @@ export default {
   data() {
     return {
       id: '',
+      number: '',
       isLoading: false,
       isVideoComplete: false,
       isSurveyComplete: false,
@@ -41,6 +42,7 @@ export default {
       this.$router.push('/');
     }
     this.id = this.$store.state.id;
+    this.number = this.$store.state.member;
     this.isSurveyComplete = !!this.$store.state.survey;
     this.isWatchedVideo = !!this.$store.state.video;
     this.hasCoupon = !this.$store.state.coupon;

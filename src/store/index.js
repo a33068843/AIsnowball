@@ -114,7 +114,7 @@ export default createStore({
     },
   },
   actions: {
-    async GetUser({ commit }, { name, member }) {
+    async GetUser({ commit }, { name }) {
       const doc = new GoogleSpreadsheet(process.env.VUE_APP_SHEET_ID);
       await doc.useServiceAccountAuth(creds);
       await doc.loadInfo();
@@ -124,8 +124,8 @@ export default createStore({
       // await rows[0].save();
 
       const user = rows.find((row) => {
-        const { Name, Member } = row;
-        return Name === name && Member === member;
+        const { Name } = row;
+        return Name === name;
       });
 
       if (user) {
